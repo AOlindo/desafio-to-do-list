@@ -32,8 +32,8 @@ public class TodoController {
 
 	@GetMapping
 	public ResponseEntity<List<Todo>> list() {
-		todoService.list();
-		return ResponseEntity.ok().build();
+		List<Todo> listTodo = todoService.list();
+		return ResponseEntity.ok(listTodo);
 	}
 
 	@PutMapping
