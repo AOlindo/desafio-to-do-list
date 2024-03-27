@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.aolindo.desafiotodolist.model.Todo;
 import br.com.aolindo.desafiotodolist.service.TodoService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/todos")
@@ -25,7 +26,7 @@ public class TodoController {
 	private TodoService todoService;
 
 	@PostMapping
-	public ResponseEntity<List<Todo>> create(@RequestBody Todo todo) {
+	public ResponseEntity<List<Todo>> create(@RequestBody @Valid Todo todo) {
 		todoService.create(todo);
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
@@ -39,7 +40,7 @@ public class TodoController {
 	@PutMapping
 	public ResponseEntity<List<Todo>> update(@RequestBody Todo todo) {
 		todoService.update(todo);
-		return ResponseEntity.ok().build();
+		return  ResponseEntity.noContent().build();
 	}
 
 	@DeleteMapping("/{id}")
